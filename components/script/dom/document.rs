@@ -625,7 +625,7 @@ impl Document {
         self.quirks_mode.set(mode);
 
         if mode == QuirksMode::Quirks {
-            self.window.layout_chan().send(Msg::SetQuirksMode(mode)).unwrap();
+            self.window.layout_chan().send(Msg::SetQuirksMode(mode));
         }
     }
 
@@ -2566,8 +2566,7 @@ impl Document {
     pub fn remove_stylesheet(&self, owner: &Element, s: &Arc<Stylesheet>) {
         self.window()
             .layout_chan()
-            .send(Msg::RemoveStylesheet(s.clone()))
-            .unwrap();
+            .send(Msg::RemoveStylesheet(s.clone()));
 
         let guard = s.shared_lock.read();
 
@@ -2606,8 +2605,7 @@ impl Document {
             .send(Msg::AddStylesheet(
                 sheet.clone(),
                 insertion_point.as_ref().map(|s| s.sheet.clone())
-            ))
-            .unwrap();
+            ));
 
         let sheet = StyleSheetInDocument {
             sheet,
@@ -2826,7 +2824,7 @@ impl Document {
         let handler = ElementPerformFullscreenEnter::new(trusted_pending, trusted_promise, error);
         let script_msg = CommonScriptMsg::Task(ScriptThreadEventCategory::EnterFullscreen, handler, pipeline_id);
         let msg = MainThreadScriptMsg::Common(script_msg);
-        window.main_thread_script_chan().send(msg).unwrap();
+        window.main_thread_script_chan().send(msg);
 
         promise
     }
@@ -2859,7 +2857,7 @@ impl Document {
         let pipeline_id = Some(global.pipeline_id());
         let script_msg = CommonScriptMsg::Task(ScriptThreadEventCategory::ExitFullscreen, handler, pipeline_id);
         let msg = MainThreadScriptMsg::Common(script_msg);
-        window.main_thread_script_chan().send(msg).unwrap();
+        window.main_thread_script_chan().send(msg);
 
         promise
     }
