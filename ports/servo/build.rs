@@ -59,7 +59,7 @@ fn android_main() {
     let platform = if target.contains("aarch64") {
         "android-21"
     } else {
-        "android-18"
+        "android-21"
     };
 
     let (toolchain, prefix) = if target.contains("armv7") {

@@ -223,7 +223,7 @@ fn main() {
 #[cfg(target_os = "android")]
 fn setup_logging() {
     // Piping logs from stdout/stderr to logcat happens in android_injected_glue.
-    env::set_var("RUST_LOG", "error");
+    env::set_var("RUST_LOG", "script,layout_thread,constellation,");
 
     unsafe { android_injected_glue::ffi::app_dummy() };
 }
@@ -262,7 +262,7 @@ fn args() -> Vec<String> {
             debug!("Failed to open params file '{}': {}",
                    params_file.to_str().unwrap(),
                    Error::description(&e));
-            vec!["servo".to_owned(), "http://en.wikipedia.org/wiki/Rust".to_owned()]
+            vec!["servo".to_owned(), "http://10.0.2.2:8000/test.html".to_owned()]
         },
     }
 }
