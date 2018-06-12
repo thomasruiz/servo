@@ -531,7 +531,7 @@ impl Document {
                             );
                         }),
                         self.window.upcast(),
-                    ).unwrap();
+                    );
                 }
             } else {
                 self.window().suspend();
@@ -1831,7 +1831,7 @@ impl Document {
                 }
             }),
             self.window.upcast(),
-        ).unwrap();
+        );
 
         // Step 8.
         let document = Trusted::new(self);
@@ -1863,7 +1863,7 @@ impl Document {
                     );
                 }),
                 self.window.upcast(),
-            ).unwrap();
+            );
         }
 
         // Step 9.
