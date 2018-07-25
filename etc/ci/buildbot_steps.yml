@@ -163,6 +163,10 @@ linux-nightly:
   - rm -rf ./python/_virtualenv
 
 android:
+ env:
+   CC: gcc-5
+   CXX: g++-5
+ commands:
   - ./mach clean-nightlies --keep 3 --force
   - ./mach clean-cargo-cache --keep 3 --force
   - ./etc/ci/bootstrap-android-and-accept-licences.sh
@@ -188,12 +192,20 @@ android-nightly:
   - ./mach upload-nightly android
 
 arm32:
+ env:
+   CC: gcc-5
+   CXX: g++-5
+ commands:
   - ./mach clean-nightlies --keep 3 --force
   - ./mach clean-cargo-cache --keep 3 --force
   - ./mach build --rel --target=arm-unknown-linux-gnueabihf
   - bash ./etc/ci/lockfile_changed.sh
 
 arm64:
+ env:
+   CC: gcc-5
+   CXX: g++-5
+ commands:
   - ./mach clean-nightlies --keep 3 --force
   - ./mach clean-cargo-cache --keep 3 --force
   - ./mach build --rel --target=aarch64-unknown-linux-gnu
