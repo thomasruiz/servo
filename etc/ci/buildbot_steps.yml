@@ -164,8 +164,8 @@ linux-nightly:
 
 android:
  env:
-   CC: gcc-5
-   CXX: g++-5
+   HOST_CC: gcc-5
+   HOST_CXX: g++-5
  commands:
   - ./mach clean-nightlies --keep 3 --force
   - ./mach clean-cargo-cache --keep 3 --force
@@ -176,6 +176,10 @@ android:
   - python ./etc/ci/check_dynamic_symbols.py
 
 android-x86:
+ env:
+   HOST_CC: gcc-5
+   HOST_CXX: g++-5
+ commands:
   - ./mach clean-nightlies --keep 3 --force
   - ./mach clean-cargo-cache --keep 3 --force
   - ./etc/ci/bootstrap-android-and-accept-licences.sh
@@ -184,6 +188,10 @@ android-x86:
   - bash ./etc/ci/lockfile_changed.sh
 
 android-nightly:
+ env:
+   HOST_CC: gcc-5
+   HOST_CXX: g++-5
+ commands:
   - ./mach clean-nightlies --keep 3 --force
   - ./mach clean-cargo-cache --keep 3 --force
   - ./etc/ci/bootstrap-android-and-accept-licences.sh
@@ -193,8 +201,8 @@ android-nightly:
 
 arm32:
  env:
-   CC: gcc-5
-   CXX: g++-5
+   HOST_CC: gcc-5
+   HOST_CXX: g++-5
  commands:
   - ./mach clean-nightlies --keep 3 --force
   - ./mach clean-cargo-cache --keep 3 --force
@@ -203,8 +211,8 @@ arm32:
 
 arm64:
  env:
-   CC: gcc-5
-   CXX: g++-5
+   HOST_CC: gcc-5
+   HOST_CXX: g++-5
  commands:
   - ./mach clean-nightlies --keep 3 --force
   - ./mach clean-cargo-cache --keep 3 --force
